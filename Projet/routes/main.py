@@ -27,6 +27,3 @@ def read_item(item_id: int, q: Union[str, None] = None):
 def creat_item(item: Item) -> Item:
     print(item)
     return item
-
-test
-test2
