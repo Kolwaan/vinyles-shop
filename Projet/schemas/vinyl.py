@@ -1,10 +1,10 @@
 from pydantic import BaseModel
-from typing import Optional
+from typing import Union
 
 
 
 class VinylCreate(BaseModel):
     title: str
     artist: str
-    year: Optional[int]
-    genre: Optional[str]
+    year: int | None
+    genre: str | None
