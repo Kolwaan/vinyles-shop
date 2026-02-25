@@ -90,7 +90,7 @@ async def login(form_data: OAuth2PasswordRequestForm = Depends(), db: Session = 
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Incorrect username or password"
         )
-    token = create_access_token({"username": user.username, "email": user.email})
+    token = create_access_token({"username": user.username, "email": user.email})   # Le JWT est créé ici
     return Token(access_token = token, token_type = "bearer")
 
 
