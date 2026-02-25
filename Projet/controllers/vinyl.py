@@ -33,3 +33,27 @@ def get_vinyl(vinyl_id:int, db:Session) -> Vinyl:   # On retourne l'entité (Mod
         raise Exception("Vinyl not found")  # Le controller signale le problème avec raise.
                                             # La route décide comment le communiquer au client (except + HTTPException).
     return vinyl
+
+# MODIFIER UN VINYL
+def update_vinyl(vinyl_id: int, data: VinylCreate, db: Session) -> Vinyl:
+    vinyl = db.get(Vinyl, vinyl_id)
+    if not vinyl:
+        raise Exception("Vinyl not found")
+
+    for key, value in data:
+        if value:
+            setattr(vinyl, key, value)
+
+    db.commit()
+    db.refresh(vinyl)
+    return vinyl
+
+# SUPPRIMER UN VINYL
+def delete_vinyl(vinyl_id: int, db: Session):
+    vinyl = db.get(Vinyl, vinyl_id)
+    if not vinyl:
+        raise Exception("Vinyl not found")
+
+    db.delete(vinyl)
+    db.commit()
+

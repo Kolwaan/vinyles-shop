@@ -1,6 +1,8 @@
 from sqlalchemy import Column, Integer, String, DateTime
 from sqlalchemy.sql import func
 from models.database import Base   # declarative_base de SQLAlchemy
+from sqlalchemy.orm import relationship
+from models.collection_vinyl import association_table
 
 class Vinyl(Base):  # la classe Vinyl hérite de la classe spéciale Base
     __tablename__ = "vinyls"  # nom donné à la table dans SQL
@@ -14,3 +16,9 @@ class Vinyl(Base):  # la classe Vinyl hérite de la classe spéciale Base
     year = Column(Integer, nullable=True)
     genre = Column(String, nullable=True)
     added_at = Column(DateTime(timezone=True), server_default=func.now())
+
+    collections = relationship(
+        "Collection",
+        secondary = association_table,
+        back_populates = "vinyls"
+    )
