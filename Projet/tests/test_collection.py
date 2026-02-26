@@ -1,7 +1,8 @@
 # Helper pour obtenir les headers d'authentification
+# Simulation du parcours d'un utilisateur (inscription + connexion)
 def get_auth_headers(client, user_data):
-    client.post("/users/register", json=user_data)
-    response = client.post(
+    client.post("/users/register", json=user_data)  # simulation de la création d'un compte
+    response = client.post(                         # envoie les identifiants et reçoit un JWT en retour
         "/token",
         data={"username": user_data["username"], "password": user_data["password"]}
     )

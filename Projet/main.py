@@ -125,7 +125,7 @@ def create_collection_route(
     collections: CollectionCreate,
     current_user: User = Depends(get_current_user),
     db: Session = Depends(get_db)): # FastAPI orchestre le cycle de vie de get_db (injection + fermeture) ;
-                                    # SQLAlchemy gère la session BDD                                  
+                                    # SQLAlchemy crée la session BDD                                  
     return create_collection(collections, current_user, db)
 
 
