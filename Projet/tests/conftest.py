@@ -13,7 +13,7 @@ Base.metadata.create_all(bind=engine)
 
 
 # Fixture qui crée une BDD SQLite temporaire pour les tests.
-# Les tests restent isolés les uns des autes car on repart sur une BDD vide.
+# Les tests restent isolés les uns des autres car on repart sur une BDD vide.
 @pytest.fixture(scope="function")
 def db_session():
     Base.metadata.create_all(bind=engine)   # Création des tables 
